@@ -1,10 +1,13 @@
 <?php 
 
+session_start();
+
 require_once("vendor/autoload.php");
 
 use \Slim\Slim;
 use \Hcode\Page;
 use \Hcode\PageAdmin;
+use \Hcode\Model\User;
 
 $app = new Slim();
 
@@ -24,10 +27,33 @@ $app->get('/', function() {
 
 $app->get('/admin', function() {
 
+    User::verifyLogin();
+
     $page = new PageAdmin();
     $page->setTpl("index");
 
 });
+
+$app->get('/admin/login', function() {
+
+    $page = new PageAdmin([
+        "header"=>false,
+        "footer"=>false
+    ]);
+    
+    $page->setTpl("login");
+
+});
+
+$app->post('/admin/login', function() {
+
+    user::login($POST["login"], $POST["password"]);
+
+    header("Location: /admin");
+
+    exit;
+});
+
 $app->run();
 
  ?>
