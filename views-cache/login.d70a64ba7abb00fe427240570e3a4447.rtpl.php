@@ -35,8 +35,8 @@
 
     <form action="../../index2.html" method="post">
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <input type="password" class="form-control" placeholder="Password" name="password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="password" class="form-control" placeholder="Password">
